@@ -1,3 +1,4 @@
+
 // === ADIVINA EL NÚMERO - Versión DOM ===
 
 // --- Seleccionar elementos del HTML ---
@@ -9,7 +10,7 @@ const historial = document.getElementById('historial');
 const btnReiniciar = document.getElementById('btnReiniciar');
 const tarjeta = document.getElementById('game-card');
 
-console.log('Elementos conectados:', inputIntento, btnAdivinar, mensaje);
+console.log('Elementos conectados:', inputIntento, btnAdivinar, mensaje, contador, historial, btnReiniciar, tarjeta);
 
 
 // --- Tu primera función ---
@@ -19,7 +20,7 @@ function mostrarMensaje(texto, color) {
 }
 
 // Prueba la función
-mostrarMensaje('¡Bienvenido al juego!', '#e94560');
+mostrarMensaje('¡Que comience el desafío!', '#3ed3f8');
 
 // --- Variables del juego ---
 let numeroSecreto = Math.floor(Math.random() * 100) + 1;
@@ -44,20 +45,34 @@ function verificarIntento() {
 
   // Agregar al historial
   historialIntentos.push(valor);
-  historial.textContent = 'Historial: ' + historialIntentos.join(', ');
+  historial.innerHTML = '';
+
+historialIntentos.forEach(function(numero) {
+  let clase = '';
+
+  if (numero === numeroSecreto) {
+    clase = 'correcto';
+  } else if (numero > numeroSecreto) {
+    clase = 'alto';
+  } else {
+    clase = 'bajo';
+  }
+
+  historial.innerHTML += `<span class="intento ${clase}">${numero}</span>`;
+});
 
   // Comparar con el número secreto
   if (valor === numeroSecreto) {
-    mostrarMensaje('🎉 ¡Correcto! Era el ' + numeroSecreto, '#00ff88');
+    mostrarMensaje('🏆 ¡Ganaste! El número secreto era ' + numeroSecreto, '#00ff88');
     btnAdivinar.disabled = true;
     btnReiniciar.style.display = 'inline-block';
     // Celebración visual: la tarjeta brilla verde
-    tarjeta.style.borderColor = '#00ff88';
-    tarjeta.style.boxShadow = '0 0 40px rgba(0, 255, 136, 0.3)';
+    tarjeta.style.borderColor = '#00e1ff';
+    tarjeta.style.boxShadow = '0 0 40px rgba(46, 238, 206, 0.77)';
   } else if (valor > numeroSecreto) {
-    mostrarMensaje('📈 Muy alto. Intenta más bajo.', '#ff6b6b');
+    mostrarMensaje('🔥 Muy arriba... intenta un número menor.', '#eb782c');
   } else {
-    mostrarMensaje('📉 Muy bajo. Intenta más alto.', '#4ecdc4');
+    mostrarMensaje('🥶 Muy bajo... acércate más al objetivo.', '#b766e6');
   }
 
   // Limpiar input y enfocar
@@ -82,7 +97,7 @@ function reiniciarJuego() {
 
   contador.textContent = 'Intentos: 0';
   historial.textContent = 'Historial: ';
-  mostrarMensaje('🎯 ¡Nuevo juego! Adivina el número...', '#e94560');
+  mostrarMensaje('🎯 ¡Nuevo juego! Adivina el número...', '#e9a745');
 
   btnAdivinar.disabled = false;
   btnReiniciar.style.display = 'none';
@@ -113,11 +128,4 @@ function obtenerPista(intento, secreto) {
     return '❄️ Frío';
   }
 }
-  // Dentro de verificarIntento(), reemplaza las pistas:
-  } else if (valor > numeroSecreto) {
-    let pista = obtenerPista(valor, numeroSecreto);
-    mostrarMensaje('📈 Muy alto. ' + pista, '#ff6b6b');
-  } else {
-    let pista = obtenerPista(valor, numeroSecreto);
-    mostrarMensaje('📉 Muy bajo. ' + pista, '#4ecdc4');
-  }
+  

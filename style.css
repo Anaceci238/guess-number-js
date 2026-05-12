@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-image: url("juego1.png");
+  background-size: 100%;
+  color: #eee;
+  padding: 20px;
+}
+
+.game-card {
+  background: rgba(14, 17, 1, 0.5);
+  border: 1px solid rgba(80, 69, 233, 0.3);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(10, 204, 230, 0.6);
+  transition:
+    border-color 0.5s,
+    box-shadow 0.5s;
+}
+
+h1 {
+  color: #fad91c;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 12px;
+  font-size: 18px;
+  width: 100px;
+  text-align: center;
+  border: 2px solid rgba(50, 142, 247, 0.4);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #eee;
+  outline: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+input:focus {
+  border-color: #45d0e9;
+  box-shadow: 0 0 12px rgba(69, 233, 69, 0.3);
+}
+/* Ocultar flechas del input numérico */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #45b5e9;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.3s;
+ 
+}
+button:hover {
+  background-color: #367eeb;
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(1px);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+#mensaje {
+  font-size: 24px;
+  margin: 20px 0;
+  min-height: 40px;
+  transition: font-size 0.3s;
+}
+
+#historial {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.intento {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 15px;
+  backdrop-filter: blur(6px);
+}
+
+.intento.bajo {
+  background: rgba(78, 205, 196, 0.45);
+  box-shadow: 0 0 12px rgba(78, 205, 196, 0.6);
+}
+
+.intento.alto {
+  background: rgba(255, 75, 125, 0.55);
+  box-shadow: 0 0 12px rgba(255, 75, 125, 0.6);
+}
+
+.intento.correcto {
+  background: rgba(0, 255, 136, 0.65);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+}
+
+#btnReiniciar {
+  background-color: #61af34;
+  margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+  .game-card {
+    padding: 30px 20px;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  input {
+    width: 80%;
+  }
+  button {
+    width: 80%;
+  }
+}
