@@ -25,6 +25,7 @@ mostrarMensaje('¡Que comience el desafío!', '#3ed3f8');
 // --- Variables del juego ---
 let numeroSecreto = Math.floor(Math.random() * 100) + 1;
 let intentos = 0;
+let maxIntentos = 10;
 let historialIntentos = [];
 
 console.log('(DEBUG) Número secreto:', numeroSecreto);
@@ -41,10 +42,28 @@ function verificarIntento() {
 
   // Incrementar contador
   intentos++;
-  contador.textContent = 'Intentos: ' + intentos;
+  contador.textContent = 'Intentos: ' + intentos + ' / ' + maxIntentos;
 
   // Agregar al historial
   historialIntentos.push(valor);
+  if (intentos >= maxIntentos && valor !== numeroSecreto) {
+
+  mostrarMensaje(
+    '💀 Game Over. El número era ' + numeroSecreto,
+    '#ff4d4d'
+  );
+
+  btnAdivinar.disabled = true;
+
+  btnReiniciar.style.display = 'inline-block';
+
+  tarjeta.style.borderColor = '#ff4d4d';
+
+  tarjeta.style.boxShadow =
+    '0 0 35px rgba(255, 77, 77, 0.7)';
+
+  return;
+}
   historial.innerHTML = '';
 
 historialIntentos.forEach(function(numero) {
