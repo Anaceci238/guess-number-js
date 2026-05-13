@@ -12,7 +12,8 @@ body {
   align-items: center;
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   background-image: url("juego1.png");
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no repeat;
   color: #eee;
   padding: 20px;
 }
